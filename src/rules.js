@@ -68,7 +68,7 @@ rules.listItem = {
     content = content
       .replace(/^\n+/, '')         // remove leading newlines
       .replace(/\n+$/, '\n')       // replace trailing newlines with just a single one
-      .replace(/\n/gm, '\n    ');  // indent
+      .replace(/\n/gm, '\n  ');  // indent
     var prefix = orgElem.unorderedList + ' ';
     var parent = node.parentNode;
     if (parent.nodeName === 'OL') {
