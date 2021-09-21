@@ -23,6 +23,16 @@ describe(namespace + "basic", function () {
     it("fromString('<b>test</b>') should be '*test*'", function () {
       (html2org.fromString('<b>test</b>').toString()).should.eql('*test*');
     });
+  describe(namespace + "basic/headings", function () {
+    it("fromString('<h1>test</h1>') should be '* test'", function () {
+      (html2org.fromString('<h1>test</h1>').toString()).should.eql('* test');
+    });
+    it("fromString('<h3>test</h3>') should be '*** test'", function () {
+      (html2org.fromString('<h3>test</h3>').toString()).should.eql('*** test');
+    });
+    it("fromString('<div>\\n\\t<h1>test</h1>\\n</div>') should be '* test'", function () {
+      (html2org.fromString('<div>\n\t<h1>test</h1>\n</div>').toString()).should.eql('* test');
+    });
   });
 
   describe(namespace + "basic/list", function () {
