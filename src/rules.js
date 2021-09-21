@@ -15,7 +15,7 @@ rules.lineBreak = {
   filter: 'br',
 
   parser: function (content, node) {
-    return orgElem.horizontalLine + '\n';
+    return '\n';
   }
 };
 
