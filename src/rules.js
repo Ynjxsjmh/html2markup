@@ -77,8 +77,7 @@ rules.listItem = {
       prefix = (start ? Number(start) + index : index + 1) + '. ';
     }
     return (
-      prefix + content
-      // prefix + content + (node.nextSibling && !/\n$/.test(content) ? '\n' : '')
+      prefix + content + (node.nextSibling && !/\n$/.test(content) ? '\n' : '')
     );
   }
 };
