@@ -82,4 +82,12 @@ rules.listItem = {
   }
 };
 
+rules.blockquote = {
+  filter: 'blockquote',
+
+  parser: function (content, node) {
+    return '\n\n' + orgElem.quoteOpen + '\n' + content.trim() + '\n' + orgElem.quoteClose + '\n\n';
+  }
+};
+
 module.exports = rules;
