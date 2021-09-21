@@ -60,5 +60,13 @@ describe(namespace + "basic", function () {
     it("fromString('<ol>\\n<li>First item</li>\\n<li>Second item</li>\\n</ol>') should be '1. First item\\n2. Second item'", function () {
       (html2org.fromString('<ol>\n<li>First item</li>\n<li>Second item</li>\n</ol>').toString()).should.eql('1. First item\n2. Second item');
     });
+
+    it("Unordered list nested with unordered list", function () {
+      (html2org.fromString('<ul>\n  <li>\n    Item\n    <ul>\n      <li>SubItem</li>\n      <li>SubItem</li>\n    </ul>\n  </li>\n  <li>Item</li>\n</ul>\n').toString()).should.eql('- Item\n  - SubItem\n  - SubItem\n- Item');
+    });
+
+    it("Complicated nested list", function () {
+      (html2org.fromString('<ul>\n  <li>Item\n    <ul>\n      <li>SubItem\n        <ol>\n          <li>First SubItem</li>\n          <li>Second SubItem</li>\n        </ol>\n      </li>\n      <li>SubItem</li>\n    </ul>\n  </li>\n  <li>Item\n    <ol>\n      <li>First SubItem\n        <ul>\n          <li>SubItem\n            <ol>\n              <li>First SubItem\n                <ol>\n                  <li>First SubItem</li>\n                  <li>Second SubItem</li>\n                </ol>\n              </li>\n              <li>Second SubItem</li>\n            </ol>\n          </li>\n          <li>SubItem</li>\n        </ul>\n      </li>\n      <li>Second SubItem\n      </li>\n    </ol>\n  </li>\n</ul>').toString()).should.eql('- Item\n  - SubItem\n    1. First SubItem\n    2. Second SubItem\n  - SubItem\n- Item\n  1. First SubItem\n    - SubItem\n      1. First SubItem\n        1. First SubItem\n        2. Second SubItem\n      2. Second SubItem\n    - SubItem\n  2. Second SubItem');
+    });
   });
 });
