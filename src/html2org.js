@@ -1,3 +1,5 @@
+var minify = require('html-minifier').minify;
+
 var rules = require('./rules');
 var util = require('./util');
 var Node = require('./node');
@@ -19,6 +21,10 @@ var isHtml = function (str) {
 };
 
 var createDoc = function (html) {
+  html = minify(html, {
+    collapseWhitespace: true,
+  });
+
   if (!isBrowser) {
     const jsdom = require('jsdom');
     const { JSDOM } = jsdom;
