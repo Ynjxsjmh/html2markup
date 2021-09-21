@@ -19,6 +19,14 @@ rules.lineBreak = {
   }
 };
 
+rules.horizontalLine = {
+  filter: 'hr',
+
+  replacement: function (content, node) {
+    return '\n\n' + orgElem.horizontalLine + '\n\n';
+  }
+};
+
 rules.heading = {
   filter: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
 
