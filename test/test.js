@@ -31,6 +31,17 @@ describe(namespace + "basic", function () {
     });
   });
 
+  describe(namespace + "basic/blockquote", function () {
+
+    it("fromString('<blockquote>test</blockquote>') should be '#+BEGIN_QUOTE\\ntest\\n#+END_QUOTE'", function () {
+      (html2org.fromString('<blockquote>test</blockquote>').toString()).should.eql('#+BEGIN_QUOTE\ntest\n#+END_QUOTE');
+    });
+
+    it("fromString('<blockquote>\\n  <p>test</p>\\n  <p>test</p>\\n</blockquote>') should be '#+BEGIN_QUOTE\\ntest\\n\\ntest\\n#+END_QUOTE'", function () {
+      (html2org.fromString('<blockquote>\n  <p>test</p>\n  <p>test</p>\n</blockquote>').toString()).should.eql('#+BEGIN_QUOTE\ntest\n\ntest\n#+END_QUOTE');
+    });
+  });
+
   describe(namespace + "basic/headings", function () {
     it("fromString('<h1>test</h1>') should be '* test'", function () {
       (html2org.fromString('<h1>test</h1>').toString()).should.eql('* test');
