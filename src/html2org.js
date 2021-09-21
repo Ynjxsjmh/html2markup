@@ -53,6 +53,38 @@ HTML2Org.prototype = {
     var content = parse.call(this, doc);
     return util.forceSpacing(content);
   },
+
+  fromPath: function (path) {
+    var fs = require('fs');
+    var basename = require('path').basename(path);
+
+    if (!fs.existsSync(path)) {
+      return Promise.reject('not exists file: ' + basename+'.');
+    }
+
+    var stat = fs.statSync(path);
+    if (!!stat && stat.isDirectory()) {
+      return Promise.reject(basename + ' is a directory.');
+    }
+
+    return new Promise(function (resolve, reject) {
+      fs.readFile(path, function (err, data) {
+        if (err) {
+          reject(err.message);
+          return;
+        }
+        var string = data.toString();
+        if (!isHtml(string)) {
+          reject(basename + ' is not a html file.');
+          return;
+        }
+        resolve(createDoc(string));
+      });
+    }).then(function (dom) {
+      var content = parse.call(this, dom);
+      return util.forceSpacing(content);
+    });
+  }
 };
 
 function parse(parentNode) {
