@@ -14,6 +14,9 @@ describe(namespace + "basic", function () {
     it("fromString('<i>test</i>') should be '*test*'", function () {
       (html2org.fromString('<i>test</i>').toString()).should.eql('/test/');
     });
+    it("fromString('<p>a<i>b</i>c</p>') should be 'a/b/c'", function () {
+      (html2org.fromString('<p>a<i>b</i>c</p>').toString()).should.eql('a/b/c');
+    });
   });
 
   describe(namespace + "basic/strong", function () {
@@ -23,6 +26,11 @@ describe(namespace + "basic", function () {
     it("fromString('<b>test</b>') should be '*test*'", function () {
       (html2org.fromString('<b>test</b>').toString()).should.eql('*test*');
     });
+    it("fromString('<p>a<b>b</b>c</p>') should be 'a*b*c'", function () {
+      (html2org.fromString('<p>a<b>b</b>c</p>').toString()).should.eql('a*b*c');
+    });
+  });
+
   describe(namespace + "basic/headings", function () {
     it("fromString('<h1>test</h1>') should be '* test'", function () {
       (html2org.fromString('<h1>test</h1>').toString()).should.eql('* test');
@@ -36,10 +44,20 @@ describe(namespace + "basic", function () {
   });
 
   describe(namespace + "basic/list", function () {
-    it("Unordered list", function () {
+
+    // Unordered list
+    it("fromString('<ul><li>Item</li><li>Item</li></ul>') should be '- Item\\n- Item'", function () {
+      (html2org.fromString('<ul><li>Item</li><li>Item</li></ul>').toString()).should.eql('- Item\n- Item');
+    });
+    it("fromString('<ul>\\n<li>Item</li>\\n<li>Item</li>\\n</ul>') should be '- Item\\n- Item'", function () {
       (html2org.fromString('<ul>\n<li>Item</li>\n<li>Item</li>\n</ul>').toString()).should.eql('- Item\n- Item');
     });
-    it("Ordered list", function () {
+
+    // Ordered list
+    it("fromString('<ol><li>First item</li><li>Second item</li></ol>') should be '1. First item\\n2. Second item'", function () {
+      (html2org.fromString('<ol><li>First item</li><li>Second item</li></ol>').toString()).should.eql('1. First item\n2. Second item');
+    });
+    it("fromString('<ol>\\n<li>First item</li>\\n<li>Second item</li>\\n</ol>') should be '1. First item\\n2. Second item'", function () {
       (html2org.fromString('<ol>\n<li>First item</li>\n<li>Second item</li>\n</ol>').toString()).should.eql('1. First item\n2. Second item');
     });
   });
