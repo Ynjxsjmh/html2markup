@@ -7,11 +7,12 @@ var namespace = "HTML2Org/";
 
 
 describe(namespace + "basic", function () {
+
   describe(namespace + "basic/emphasis", function () {
     it("fromString('<em>test</em>') should be '/test/'", function () {
       (html2org.fromString('<em>test</em>').toString()).should.eql('/test/');
     });
-    it("fromString('<i>test</i>') should be '*test*'", function () {
+    it("fromString('<i>test</i>') should be '/test/'", function () {
       (html2org.fromString('<i>test</i>').toString()).should.eql('/test/');
     });
     it("fromString('<p>a<i>b</i>c</p>') should be 'a/b/c'", function () {
