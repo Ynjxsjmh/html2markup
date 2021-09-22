@@ -31,6 +31,15 @@ describe(namespace + "basic", function () {
     });
   });
 
+  describe(namespace + "basic/edit", function () {
+    it("fromString('<del>test</del>') should be '+test+'", function () {
+      (html2org.fromString('<del>test</del>').toString()).should.eql('+test+');
+    });
+    it("fromString('<ins>test</ins>') should be '_test_'", function () {
+      (html2org.fromString('<ins>test</ins>').toString()).should.eql('_test_');
+    });
+  });
+
   describe(namespace + "basic/blockquote", function () {
 
     it("fromString('<blockquote>test</blockquote>') should be '#+BEGIN_QUOTE\\ntest\\n#+END_QUOTE'", function () {
