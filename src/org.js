@@ -20,6 +20,8 @@ orgElem.unorderedList = '-';
 // and contain the separator ‘::’ to distinguish the description term from the description.
 orgElem.descriptionList = '::';
 
+orgElem.inlineHTMLOpen = '@@html:';
+orgElem.inlineHTMLClose = '@@';
 orgElem.preOpen = '#+BEGIN_SRC';
 orgElem.preClose = '#+END_SRC';
 orgElem.quoteOpen = '#+BEGIN_QUOTE';
