@@ -38,6 +38,24 @@ rules.heading = {
   }
 };
 
+rules.del = {
+  filter: 'del',
+
+  parser: function (content, node) {
+    if (!content.trim()) return '';
+    return orgElem.strike + content + orgElem.strike;
+  }
+};
+
+rules.ins = {
+  filter: 'ins',
+
+  parser: function (content, node) {
+    if (!content.trim()) return '';
+    return orgElem.underlined + content + orgElem.underlined;
+  }
+};
+
 rules.emphasis = {
   filter: ['em', 'i'],
 
