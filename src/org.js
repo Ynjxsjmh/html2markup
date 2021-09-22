@@ -12,6 +12,9 @@ orgElem.verbatim = '=';
 orgElem.underlined = '_';
 orgElem.horizontalLine = '-----';
 
+orgElem.sub = '_';
+orgElem.sup = '^';
+
 orgElem.unorderedList = '-';
 // Description list items are unordered list items,
 // and contain the separator ‘::’ to distinguish the description term from the description.
