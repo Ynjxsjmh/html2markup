@@ -41,6 +41,15 @@ describe(namespace + "basic", function () {
     });
   });
 
+  describe(namespace + "basic/subsup", function () {
+    it("fromString('H<sub>2</sub>O') should be 'H_{2}O'", function () {
+      (html2org.fromString('H<sub>2</sub>O').toString()).should.eql('H_{2}O');
+    });
+    it("fromString('e<sup>iπ</sup>+1=0') should be 'e^{iπ}+1=0'", function () {
+      (html2org.fromString('e<sup>iπ</sup>+1=0').toString()).should.eql('e^{iπ}+1=0');
+    });
+  });
+
   describe(namespace + "basic/blockquote", function () {
 
     it("fromString('<blockquote>test</blockquote>') should be '#+BEGIN_QUOTE\\ntest\\n#+END_QUOTE'", function () {
