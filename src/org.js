@@ -12,14 +12,15 @@ orgElem.verbatim = '=';
 orgElem.underlined = '_';
 orgElem.horizontalLine = '-----';
 
-orgElem.sub = '_';
-orgElem.sup = '^';
+orgElem.sub = (text) => `_{${text}}`;
+orgElem.sup = (text) => `^{${text}}`;
 
 orgElem.unorderedList = '-';
 // Description list items are unordered list items,
 // and contain the separator ‘::’ to distinguish the description term from the description.
 orgElem.descriptionList = '::';
 
+orgElem.inlineCode = (lang, text) => `src_${lang}[:exports code]{${text}}`;
 orgElem.inlineHTMLOpen = '@@html:';
 orgElem.inlineHTMLClose = '@@';
 orgElem.preOpen = '#+BEGIN_SRC';

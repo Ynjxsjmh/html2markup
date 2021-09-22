@@ -61,7 +61,7 @@ rules.sub = {
 
   parser: function (content, node) {
     if (!content.trim()) return '';
-    return orgElem.sub + '{' + content + '}';
+    return orgElem.sub(content);
   }
 };
 
@@ -70,7 +70,7 @@ rules.sup = {
 
   parser: function (content, node) {
     if (!content.trim()) return '';
-    return orgElem.sup + '{' + content + '}';
+    return orgElem.sup(content);
   }
 };
 
