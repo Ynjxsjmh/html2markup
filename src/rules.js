@@ -56,6 +56,24 @@ rules.ins = {
   }
 };
 
+rules.sub = {
+  filter: 'sub',
+
+  parser: function (content, node) {
+    if (!content.trim()) return '';
+    return orgElem.sub + '{' + content + '}';
+  }
+};
+
+rules.sup = {
+  filter: 'sup',
+
+  parser: function (content, node) {
+    if (!content.trim()) return '';
+    return orgElem.sup + '{' + content + '}';
+  }
+};
+
 rules.emphasis = {
   filter: ['em', 'i'],
 
