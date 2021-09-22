@@ -134,4 +134,14 @@ rules.blockquote = {
   }
 };
 
+rules.ruby = {
+  filter: ['ruby', 'rt', 'rp'],
+
+  parser: function (content, node) {
+    var open = orgElem.inlineHTMLOpen + `<${node.tagName.toLowerCase()}>` + orgElem.inlineHTMLClose;
+    var close = orgElem.inlineHTMLOpen + `</${node.tagName.toLowerCase()}>` + orgElem.inlineHTMLClose;
+    return open + content + close;
+  }
+};
+
 module.exports = rules;
