@@ -50,6 +50,15 @@ describe(namespace + "basic", function () {
     });
   });
 
+  describe(namespace + "basic/ruby", function () {
+    it("fromString('<ruby>测<rt>cè</rt></ruby><ruby>试<rt>shì</rt></ruby>') should be '@@html:<ruby>@@测@@html:<rt>@@cè@@html:</rt>@@@@html:</ruby>@@@@html:<ruby>@@试@@html:<rt>@@shì@@html:</rt>@@@@html:</ruby>@@'", function () {
+      (html2org.fromString('<ruby>测<rt>cè</rt></ruby><ruby>试<rt>shì</rt></ruby>').toString()).should.eql('@@html:<ruby>@@测@@html:<rt>@@cè@@html:</rt>@@@@html:</ruby>@@@@html:<ruby>@@试@@html:<rt>@@shì@@html:</rt>@@@@html:</ruby>@@');
+    });
+    it("fromString('<ruby>测<rp>（</rp><rt>cè</rt><rp>）</rp>试<rp>（</rp><rt>shì</rt><rp>）</rp></ruby>') should be '@@html:<ruby>@@测@@html:<rp>@@（@@html:</rp>@@@@html:<rt>@@cè@@html:</rt>@@@@html:<rp>@@）@@html:</rp>@@试@@html:<rp>@@（@@html:</rp>@@@@html:<rt>@@shì@@html:</rt>@@@@html:<rp>@@）@@html:</rp>@@@@html:</ruby>@@'", function () {
+      (html2org.fromString('<ruby>测<rp>（</rp><rt>cè</rt><rp>）</rp>试<rp>（</rp><rt>shì</rt><rp>）</rp></ruby>').toString()).should.eql('@@html:<ruby>@@测@@html:<rp>@@（@@html:</rp>@@@@html:<rt>@@cè@@html:</rt>@@@@html:<rp>@@）@@html:</rp>@@试@@html:<rp>@@（@@html:</rp>@@@@html:<rt>@@shì@@html:</rt>@@@@html:<rp>@@）@@html:</rp>@@@@html:</ruby>@@');
+    });
+  });
+
   describe(namespace + "basic/blockquote", function () {
 
     it("fromString('<blockquote>test</blockquote>') should be '#+BEGIN_QUOTE\\ntest\\n#+END_QUOTE'", function () {
