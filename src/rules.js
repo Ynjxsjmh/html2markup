@@ -134,6 +134,19 @@ rules.blockquote = {
   }
 };
 
+rules.codeblock = {
+  filter: 'pre',
+
+  parser: function (content, node) {
+    var className = node.getAttribute('class') || '';
+    var language = (className.match(/language-(\S+)/)
+                    || className.match(/src-(\S+)/)
+                    || className.match(/pre-(\S+)/)
+                    || [null, ''])[1];
+    return orgElem.preOpen + ' ' + language + '\n' + content.trim() + '\n' + orgElem.preClose;
+  }
+};
+
 rules.ruby = {
   filter: ['ruby', 'rt', 'rp'],
 
