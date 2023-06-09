@@ -93,33 +93,33 @@ HTML2Org.prototype = {
   }
 };
 
-function parse(parentNode) {
+function parse(node) {
   var self = this;
-  var org = '';
+  var res = '';
 
-  parentNode.childNodes.forEach(function (node, index) {
-    org += parseNode.call(self, new Node(node));
+  node.childNodes.forEach(function (childNode, index) {
+    res += parseNode.call(self, new Node(childNode));
   });
 
-  return org;
+  return res;
 }
 
 function parseNode(node) {
   var self = this;
-  var replacement = '';
+  var res = '';
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
   if (node.nodeType === 3) {
     // TEXT_NODE
-    replacement = node.nodeValue;
+    res = node.nodeValue;
   } else if (node.nodeType === 1) {
     // ELEMENT_NODE
     var rule = self.rulebook.forNode(node);
     var content = parse.call(self, node);
-    replacement = rule.parser(content, node);
+    res = rule.parser(content, node);
   }
 
-  return replacement;
+  return res;
 }
 
 module.exports = HTML2Org;
