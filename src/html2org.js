@@ -41,10 +41,10 @@ var createDoc = function (html) {
 function HTML2Org (options) {
   var defaults = {
     rules: rules,
-    blankReplacement: function (content, node) {
+    blankParser: function (content, node) {
       return node.isBlock ? '\n\n' : '';
     },
-    defaultReplacement: function (content, node) {
+    defaultParser: function (content, node) {
       return node.isBlock ? '\n\n' + content + '\n\n' : content;
     }
   };

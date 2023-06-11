@@ -6,11 +6,11 @@ function Rulebook (options) {
   this.options = options;
 
   this.blankRule = {
-    parser: options.blankReplacement
+    parser: options.blankParser
   };
 
   this.defaultRule = {
-    parser: options.defaultReplacement
+    parser: options.defaultParser
   };
 
   this.rules = [];
