@@ -56,7 +56,7 @@ function HTML2Org (options) {
 HTML2Org.prototype = {
   fromString: function (string) {
     var doc = createDoc(string);
-    var content = parse.call(this, doc);
+    var content = parseNode.call(this, doc);
     return util.forceSpacing(content);
   },
 
@@ -87,7 +87,7 @@ HTML2Org.prototype = {
         resolve(createDoc(string));
       });
     }).then(function (dom) {
-      var content = parse.call(this, dom);
+      var content = parseNode.call(this, dom);
       return util.forceSpacing(content);
     });
   }
