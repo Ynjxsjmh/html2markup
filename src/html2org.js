@@ -29,7 +29,7 @@ var createDoc = function (html) {
     const jsdom = require('jsdom');
     const { JSDOM } = jsdom;
     const dom = new JSDOM(html);
-    return dom.window.document;
+    return dom.window.document.body;
   } else{
     var container = document.createElement('html');
     container.innerHTML = html;
