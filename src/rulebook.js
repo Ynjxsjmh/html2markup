@@ -16,9 +16,8 @@ function Rulebook (options) {
   }
 }
 
-Rulebook.prototype.forNode = function (node) {
+Rulebook.prototype.ruleFor = function (node) {
   if (node.isBlank) return this.blankRule;
-  var rule;
 
   if ((rule = findRule(this.rules, node, this.options))) return rule;
 
@@ -28,13 +27,13 @@ Rulebook.prototype.forNode = function (node) {
 function findRule (rules, node, options) {
   for (var i = 0; i < rules.length; i++) {
     var rule = rules[i];
-    if (filterValue(rule, node, options)) return rule;
+    if (matchRule(rule, node, options)) return rule;
   }
   return void 0;
 }
 
-function filterValue (rule, node, options) {
-  var filter = rule.filter;
+function matchRule (rule, node, options) {
+  var filter = rule.match;
 
   if (typeof filter === 'string') {
     if (filter === node.nodeName.toLowerCase()) return true;

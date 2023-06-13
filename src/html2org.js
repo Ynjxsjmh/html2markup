@@ -116,7 +116,7 @@ function parseNode(node) {
     res = node.nodeValue;
   } else if (node.nodeType === 1) {
     // ELEMENT_NODE
-    var rule = self.rulebook.forNode(node);
+    var rule = self.rulebook.ruleFor(node);
     var content = parse.call(self, node);
     res = rule.parser(content, node);
   }
