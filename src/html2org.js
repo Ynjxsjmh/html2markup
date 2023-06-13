@@ -1,8 +1,8 @@
 var minify = require('html-minifier').minify;
 
-var rules = require('./rules');
 var util = require('./util');
 var Node = require('./node');
+var Ruler = require('./ruler');
 var Rulebook = require('./rulebook');
 
 var reduce = Array.prototype.reduce;
@@ -39,8 +39,10 @@ var createDoc = function (html) {
 
 
 function HTML2Org (options) {
+  var ruler = new Ruler(options.markup);
+
   var defaults = {
-    rules: rules,
+    ruler: ruler,
     blankParser: function (content, node) {
       return node.isBlock ? '\n\n' : '';
     },

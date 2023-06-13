@@ -1,6 +1,3 @@
-/**
- * Manages a collection of rules used to convert HTML to Org
- */
 
 function Rulebook (options) {
   this.options = options;
@@ -14,8 +11,8 @@ function Rulebook (options) {
   };
 
   this.rules = [];
-  for (var key in options.rules) {
-    this.rules.push(options.rules[key]);
+  for (var key in options.ruler.rules) {
+    this.rules.push(options.ruler.rules[key]);
   }
 }
 
