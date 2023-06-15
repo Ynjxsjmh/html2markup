@@ -120,6 +120,36 @@ Orgmode.prototype = {
   parseParagraph: function (content, node) {
   },
 
+  parseList: function (content, node) {
+    var parent = node.parentNode;
+    if (parent.nodeName === 'LI') {
+      // Line break for nested list
+      return '\n' + content;
+    } else {
+      return '\n\n' + content + '\n\n';
+    }
+  },
+
+  parseListItem: function (content, node) {
+    content = (content
+               //.replace(/^\n+/, '')       // remove leading newlines
+               //.replace(/\n+$/, '\n')     // replace trailing newlines with just a single one
+               .replace(/\n/gm, '\n  ')); // indent
+
+    var prefix = '- ';
+    var parent = node.parentNode;
+    if (parent.nodeName === 'OL') {
+      var start = parent.getAttribute('start');
+      var index = Array.prototype.indexOf.call(parent.children, node);
+      prefix = (start ? Number(start) + index : index + 1) + '. '
+        + ((parent.firstElementChild === node) && start ? `[@${start}]` : '');
+      content = content.replace(/\n/gm, '\n' + ' '.repeat(prefix > 9 ? 2 : 1));
+    }
+    return (
+      prefix + content + (node.nextSibling && !/\n$/.test(content) ? '\n' : '')
+    );
+  },
+
   parseTable: function (content, node) {
     return `\n\n${content}\n\n`;
   },

@@ -9,6 +9,16 @@ function Ruler(markup) {
     parser: this.markup.parseParagraph.bind(this.markup),
   };
 
+  this.rules.list = {
+    match: ['ul', 'ol'],
+    parser: this.markup.parseList.bind(this.markup),
+  };
+
+  this.rules.listItem = {
+    match: 'li',
+    parser: this.markup.parseListItem.bind(this.markup),
+  };
+
   this.rules.table = {
     match: 'table',
     parser: this.markup.parseTable.bind(this.markup),
