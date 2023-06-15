@@ -116,9 +116,7 @@ function Orgmode(syntax) {
 }
 extend(Orgmode, Markup);
 
-Orgmode.prototype = {
-  parseParagraph: function (content, node) {
-  },
+Object.assign(Orgmode.prototype, {
 
   parseList: function (content, node) {
     var parent = node.parentNode;
@@ -191,7 +189,7 @@ Orgmode.prototype = {
     throw 'No implementation';
   },
 
-};
+});
 
 module.exports = {
   Orgmode,
