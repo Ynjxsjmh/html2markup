@@ -24,16 +24,16 @@ Markup.prototype = {
   },
 
   parseHorizontalRule: function (content, node) {
-    return '\n\n' + syntax.horizontalRule + '\n\n';
+    return '\n\n' + this.syntax.horizontalRule + '\n\n';
   },
 
   parsePreformattedText: function (content, node) {
-    return syntax.codeBlock;
+    return this.syntax.codeBlock;
   },
 
   parseBlockQuote: function (content, node) {
-    return ('\n\n' + syntax.blockquote + '\n' + content
-            + '\n' + syntax.blockquote + '\n\n');
+    return ('\n\n' + this.syntax.blockquote + '\n' + content
+            + '\n' + this.syntax.blockquote + '\n\n');
   },
 
   parseOrderedList: function (content, node) {
