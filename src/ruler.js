@@ -4,6 +4,11 @@ function Ruler(markup) {
 
   this.rules = {};
 
+  this.rules.heading = {
+    match: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+    parser: this.markup.parseHeading.bind(this.markup),
+  };
+
   this.rules.paragraph = {
     match: 'p',
     parser: this.markup.parseParagraph.bind(this.markup),
