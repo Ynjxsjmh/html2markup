@@ -14,6 +14,11 @@ function Ruler(markup) {
     parser: this.markup.parseParagraph.bind(this.markup),
   };
 
+  this.rules.horizontalRule = {
+    match: 'hr',
+    parser: this.markup.parseHorizontalRule.bind(this.markup),
+  };
+
   this.rules.list = {
     match: ['ul', 'ol'],
     parser: this.markup.parseList.bind(this.markup),
