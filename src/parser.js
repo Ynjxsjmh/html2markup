@@ -122,6 +122,20 @@ extend(Orgmode, Markup);
 
 Object.assign(Orgmode.prototype, {
 
+  parsePreformattedText : function (content, node) {
+    var className = ((node.getAttribute('class') || '').trim() + ' '
+                     + (node.firstChild.nodeName === 'CODE' ?
+                        (node.firstChild.getAttribute('class') || '') : '').trim() + ' '
+                     + (node.parentNode.getAttribute('class') || '')
+                    );
+    var langs = (Array.from(className.matchAll(/(src|language|lang|highlight-source)-(\S+)/g))
+                   .map(match => match[2]));
+    var lang  = langs.sort((a, b) => b.length - a.length)[0] || '';
+    return ('\n\n' + this.syntax.preOpen + ` ${lang}` + '\n'
+            + content.replace(/^\n|\n$/g, '') + '\n'
+            + this.syntax.preClose + '\n\n');
+  },
+
   parseList: function (content, node) {
     var parent = node.parentNode;
     if (parent.nodeName === 'LI') {
