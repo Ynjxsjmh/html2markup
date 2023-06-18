@@ -19,6 +19,11 @@ function Ruler(markup) {
     parser: this.markup.parseHorizontalRule.bind(this.markup),
   };
 
+  this.rules.parseSpan = {
+    match: 'span',
+    parser: this.markup.parseSpan.bind(this.markup),
+  };
+
   this.rules.list = {
     match: ['ul', 'ol'],
     parser: this.markup.parseList.bind(this.markup),

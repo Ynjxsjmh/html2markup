@@ -92,6 +92,10 @@ Markup.prototype = {
     return syntax.underline + content + syntax.underline;
   },
 
+  parseSpan:  function (content, node) {
+    return content;
+  },
+
   parseLineBreak: function (content, node) {
     return '\n';
   },
