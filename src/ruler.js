@@ -29,6 +29,11 @@ function Ruler(markup) {
     parser: this.markup.parseSpan.bind(this.markup),
   };
 
+  this.rules.parseLineBreak = {
+    match: 'br',
+    parser: this.markup.parseLineBreak.bind(this.markup),
+  };
+
   this.rules.list = {
     match: ['ul', 'ol'],
     parser: this.markup.parseList.bind(this.markup),
