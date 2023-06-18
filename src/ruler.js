@@ -19,17 +19,17 @@ function Ruler(markup) {
     parser: this.markup.parseHorizontalRule.bind(this.markup),
   };
 
-  this.rules.parsePreformattedText = {
+  this.rules.preformattedText = {
     match: 'pre',
     parser: this.markup.parsePreformattedText.bind(this.markup),
   };
 
-  this.rules.parseSpan = {
+  this.rules.span = {
     match: 'span',
     parser: this.markup.parseSpan.bind(this.markup),
   };
 
-  this.rules.parseLineBreak = {
+  this.rules.lineBreak = {
     match: 'br',
     parser: this.markup.parseLineBreak.bind(this.markup),
   };
