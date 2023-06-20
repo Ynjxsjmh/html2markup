@@ -57,11 +57,11 @@ Markup.prototype = {
   },
 
   parseEmphasis: function (content, node) {
-    return syntax.emphasis + content + syntax.emphasis;
+    return this.syntax.emphasis + content + this.syntax.emphasis;
   },
 
   parseStrong: function (content, node) {
-    return syntax.strong + content + syntax.strong;
+    return this.syntax.strong + content + this.syntax.strong;
   },
 
   parseDelete: function (content, node) {
@@ -85,11 +85,11 @@ Markup.prototype = {
   },
 
   parseSubscript: function (content, node) {
-    return syntax.sub + content + syntax.sub;
+    return this.syntax.sub + content + this.syntax.sub;
   },
 
   parseSuperscript: function (content, node) {
-    return syntax.sup + content + syntax.sup;
+    return this.syntax.sup + content + this.syntax.sup;
   },
 
   parseSpan:  function (content, node) {
