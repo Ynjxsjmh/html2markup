@@ -64,8 +64,12 @@ Markup.prototype = {
     return syntax.strong + content + syntax.strong;
   },
 
-  parseStrikethrough: function (content, node) {
-    return syntax.strike + content + syntax.strike;
+  parseDelete: function (content, node) {
+    return this.syntax.delete + content + this.syntax.delete;
+  },
+
+  parseInsert: function (content, node) {
+    return this.syntax.insert + content + this.syntax.insert;
   },
 
   parseCitation: function (content, node) {
@@ -86,10 +90,6 @@ Markup.prototype = {
 
   parseSuperscript: function (content, node) {
     return syntax.sup + content + syntax.sup;
-  },
-
-  parseUnderline: function (content, node) {
-    return syntax.underline + content + syntax.underline;
   },
 
   parseSpan:  function (content, node) {

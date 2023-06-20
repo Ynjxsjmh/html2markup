@@ -24,6 +24,26 @@ function Ruler(markup) {
     parser: this.markup.parsePreformattedText.bind(this.markup),
   };
 
+  this.rules.emphasis = {
+    match: ['em', 'i'],
+    parser: this.markup.parseEmphasis.bind(this.markup),
+  },
+
+  this.rules.strong = {
+    match: ['strong', 'b'],
+    parser: this.markup.parseStrong.bind(this.markup),
+  },
+
+  this.rules.delete = {
+    match: ['del', 's'],
+    parser: this.markup.parseDelete.bind(this.markup),
+  },
+
+  this.rules.insert = {
+    match: ['ins', 'u'],
+    parser: this.markup.parseInsert.bind(this.markup),
+  },
+
   this.rules.span = {
     match: 'span',
     parser: this.markup.parseSpan.bind(this.markup),
