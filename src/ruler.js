@@ -54,6 +54,16 @@ function Ruler(markup) {
     parser: this.markup.parseCode.bind(this.markup),
   };
 
+  this.rules.subscript = {
+    match: 'sub',
+    parser: this.markup.parseSubscript.bind(this.markup),
+  },
+
+  this.rules.superscript = {
+    match: 'sup',
+    parser: this.markup.parseSuperscript.bind(this.markup),
+  },
+
   this.rules.span = {
     match: 'span',
     parser: this.markup.parseSpan.bind(this.markup),

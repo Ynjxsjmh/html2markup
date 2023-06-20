@@ -141,6 +141,14 @@ Object.assign(Orgmode.prototype, {
     return code + content + code;
   },
 
+  parseSubscript: function (content, node) {
+    return this.syntax.sub(content);
+  },
+
+  parseSuperscript: function (content, node) {
+    return this.syntax.sup(content);
+  },
+
   parseList: function (content, node) {
     var parent = node.parentNode;
     if (parent.nodeName === 'LI') {
