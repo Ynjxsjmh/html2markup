@@ -56,6 +56,13 @@ Markup.prototype = {
     }
   },
 
+  parseAnchor: function (content, node) {
+    var href  = node.getAttribute('href');
+    var title = node.getAttribute('title');
+    title = title ? `#+ATTR_HTML: :title ${title}\n` : '';
+    return title + this.syntax.link(href, content);
+  },
+
   parseEmphasis: function (content, node) {
     return this.syntax.emphasis + content + this.syntax.emphasis;
   },

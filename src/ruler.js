@@ -29,6 +29,11 @@ function Ruler(markup) {
     parser: this.markup.parsePreformattedText.bind(this.markup),
   };
 
+  this.rules.anchor = {
+    match: 'a',
+    parser: this.markup.parseAnchor.bind(this.markup),
+  };
+
   this.rules.emphasis = {
     match: ['em', 'i'],
     parser: this.markup.parseEmphasis.bind(this.markup),
