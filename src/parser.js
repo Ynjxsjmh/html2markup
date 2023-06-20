@@ -136,6 +136,11 @@ Object.assign(Orgmode.prototype, {
             + this.syntax.preClose + '\n\n');
   },
 
+  parseCode: function (content, node) {
+    var code = content.includes("~") ? this.syntax.verbatim : this.syntax.code;
+    return code + content + code;
+  },
+
   parseList: function (content, node) {
     var parent = node.parentNode;
     if (parent.nodeName === 'LI') {

@@ -44,6 +44,16 @@ function Ruler(markup) {
     parser: this.markup.parseInsert.bind(this.markup),
   },
 
+  this.rules.code = {
+    match: function (node) {
+      var hasSiblings = node.previousSibling || node.nextSibling;
+      var isCodeBlock = (node.parentNode.nodeName === 'PRE') && !hasSiblings;
+
+      return node.nodeName === 'CODE' && !isCodeBlock;
+    },
+    parser: this.markup.parseCode.bind(this.markup),
+  };
+
   this.rules.span = {
     match: 'span',
     parser: this.markup.parseSpan.bind(this.markup),
