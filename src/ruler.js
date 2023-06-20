@@ -54,6 +54,11 @@ function Ruler(markup) {
     parser: this.markup.parseInsert.bind(this.markup),
   },
 
+  this.rules.ruby = {
+    match: ['ruby', 'rt', 'rp'],
+    parser: this.markup.parseRuby.bind(this.markup),
+  },
+
   this.rules.code = {
     match: function (node) {
       var hasSiblings = node.previousSibling || node.nextSibling;

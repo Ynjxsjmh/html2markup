@@ -149,6 +149,12 @@ Object.assign(Orgmode.prototype, {
             + this.syntax.quoteClose + '\n\n');
   },
 
+  parseRuby: function (content, node) {
+    var open = this.syntax.inlineHTMLOpen + `<${node.tagName.toLowerCase()}>` + this.syntax.inlineHTMLClose;
+    var close = this.syntax.inlineHTMLOpen + `</${node.tagName.toLowerCase()}>` + this.syntax.inlineHTMLClose;
+    return open + content + close;
+  },
+
   parseCode: function (content, node) {
     var code = content.includes("~") ? this.syntax.verbatim : this.syntax.code;
     return code + content + code;
