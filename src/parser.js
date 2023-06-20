@@ -136,6 +136,12 @@ Object.assign(Orgmode.prototype, {
             + this.syntax.preClose + '\n\n');
   },
 
+  parseBlockQuote: function (content, node) {
+    return ('\n\n' + this.syntax.quoteOpen + '\n'
+            + content.replace(/^\n+|\n+$/g, '') + '\n'
+            + this.syntax.quoteClose + '\n\n');
+  },
+
   parseCode: function (content, node) {
     var code = content.includes("~") ? this.syntax.verbatim : this.syntax.code;
     return code + content + code;

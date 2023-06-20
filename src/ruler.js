@@ -19,6 +19,11 @@ function Ruler(markup) {
     parser: this.markup.parseHorizontalRule.bind(this.markup),
   };
 
+  this.rules.blockquote = {
+    match: 'blockquote',
+    parser: this.markup.parseBlockQuote.bind(this.markup),
+  };
+
   this.rules.preformattedText = {
     match: 'pre',
     parser: this.markup.parsePreformattedText.bind(this.markup),
