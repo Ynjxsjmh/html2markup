@@ -231,8 +231,16 @@ Object.assign(Orgmode.prototype, {
     }
   },
 
-  parse: function (content, node) {
-    throw 'No implementation';
+  parseImage: function (content, node) {
+    var alt = node.getAttribute('alt') || '';
+    var src = node.getAttribute('src') || '';
+    var title = node.getAttribute('title');
+
+    var image = alt ? this.syntax.imageAlt(src, alt) : this.syntax.image(src);
+
+    title = title ? `#+CAPTION: ${title}\n` : '';
+
+    return title + image;
   },
 
   parse: function (content, node) {

@@ -124,6 +124,11 @@ function Ruler(markup) {
     parser: this.markup.parseTableCell.bind(this.markup),
   };
 
+  this.rules.image = {
+    match: 'img',
+    parser: this.markup.parseImage.bind(this.markup),
+  };
+
 };
 
 module.exports = Ruler;
