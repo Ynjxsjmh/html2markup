@@ -35,7 +35,7 @@ function Ruler(markup) {
   };
 
   this.rules.emphasis = {
-    match: ['em', 'i'],
+    match: ['em', 'i', 'var'],
     parser: this.markup.parseEmphasis.bind(this.markup),
   },
 
