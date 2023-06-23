@@ -66,7 +66,7 @@ function parse(node) {
   var res = '';
 
   node.childNodes.forEach(function (childNode, index) {
-    res += parseNode.call(self, new Node(childNode));
+    res += parseNode.call(self, childNode);
   });
 
   return res;
@@ -75,6 +75,7 @@ function parse(node) {
 function parseNode(node) {
   var self = this;
   var res = '';
+  node = new Node(node);
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
   if (node.nodeType === 3) {
