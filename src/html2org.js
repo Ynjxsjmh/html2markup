@@ -4,10 +4,41 @@ var Ruler = require('./ruler');
 var Rulebook = require('./rulebook');
 
 
-function HTML2Org (options) {
-  var ruler = new Ruler(options.markup);
+function parse(node) {
+  var self = this;
+  var res = '';
 
-  var defaults = {
+  node.childNodes.forEach(function (childNode, index) {
+    res += parseNode.call(self, childNode);
+  });
+
+  return res;
+}
+
+
+function parseNode(node) {
+  var self = this;
+  var res = '';
+  node = new Node(node);
+
+  // https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
+  if (node.nodeType === 3) {
+    // TEXT_NODE
+    res = node.nodeValue;
+  } else if (node.nodeType === 1) {
+    // ELEMENT_NODE
+    var rule = self.rulebook.ruleFor(node);
+    var content = parse.call(self, node);
+    res = rule.parser(content, node);
+  }
+
+  return res;
+}
+
+function HTML2Markup(options) {
+  ruler = new Ruler(options.markup);
+
+  defaults = {
     ruler: ruler,
     blankParser: function (content, node) {
       return node.isBlock ? '\n\n' : '';
@@ -20,8 +51,7 @@ function HTML2Org (options) {
   this.rulebook = new Rulebook(defaults);
 }
 
-
-HTML2Org.prototype = {
+HTML2Markup.prototype = {
   fromString: function (string) {
     var doc = util.createDoc(string);
     var content = parseNode.call(this, doc);
@@ -61,34 +91,18 @@ HTML2Org.prototype = {
   }
 };
 
-function parse(node) {
-  var self = this;
-  var res = '';
 
-  node.childNodes.forEach(function (childNode, index) {
-    res += parseNode.call(self, childNode);
-  });
+function HTML2Orgmode(options) {
+  var orgSyntax = require('./markup/org');
+  var { Orgmode } = require("./parser");
+  var markup = new Orgmode(orgSyntax);
+  options.markup = markup;
 
-  return res;
+  HTML2Markup.call(this, options);
 }
+util.extend(HTML2Orgmode, HTML2Markup);
 
-function parseNode(node) {
-  var self = this;
-  var res = '';
-  node = new Node(node);
 
-  // https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
-  if (node.nodeType === 3) {
-    // TEXT_NODE
-    res = node.nodeValue;
-  } else if (node.nodeType === 1) {
-    // ELEMENT_NODE
-    var rule = self.rulebook.ruleFor(node);
-    var content = parse.call(self, node);
-    res = rule.parser(content, node);
-  }
-
-  return res;
-}
-
-module.exports = HTML2Org;
+module.exports = {
+  HTML2Orgmode,
+};
