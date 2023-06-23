@@ -198,6 +198,28 @@ Object.assign(Orgmode.prototype, {
     );
   },
 
+  parseDescriptionTerm: function (content, node) {
+    return `- ${content} ::`;
+  },
+
+  parseDescriptionDefinition: function (content, node) {
+    if (node.previousSibling.nodeName === 'DT' && node.nextSibling && node.nextSibling.nodeName === 'DD') {
+      return `\n  - ${content}`;
+    } else if (node.previousSibling.nodeName === 'DD' && node.nextSibling && node.nextSibling.nodeName === 'DD') {
+      return `\n  - ${content}`;
+    } else if (node.previousSibling.nodeName === 'DD' && node.nextSibling === null) {
+      return `\n  - ${content}`;
+    } else if (node.previousSibling.nodeName === 'DD' && node.nextSibling.nodeName === 'DT') {
+      return `\n  - ${content}\n`;
+    } else if (node.previousSibling.nodeName === 'DT' && node.nextSibling === null) {
+      return ` ${content}`;
+    } else if (node.previousSibling.nodeName === 'DT' && node.nextSibling.nodeName === 'DT') {
+      return ` ${content}\n`;
+    } else {
+      return `${content}`;
+    }
+  },
+
   parseTable: function (content, node) {
     return `\n\n${content}\n\n`;
   },

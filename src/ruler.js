@@ -90,13 +90,23 @@ function Ruler(markup) {
   };
 
   this.rules.list = {
-    match: ['ul', 'ol'],
+    match: ['ul', 'ol', 'dl'],
     parser: this.markup.parseList.bind(this.markup),
   };
 
   this.rules.listItem = {
     match: 'li',
     parser: this.markup.parseListItem.bind(this.markup),
+  };
+
+  this.rules.descriptionTerm = {
+    match: 'dt',
+    parser: this.markup.parseDescriptionTerm.bind(this.markup),
+  };
+
+  this.rules.descriptionDefinition = {
+    match: 'dd',
+    parser: this.markup.parseDescriptionDefinition.bind(this.markup),
   };
 
   this.rules.table = {
