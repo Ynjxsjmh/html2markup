@@ -1,41 +1,7 @@
-var minify = require('html-minifier').minify;
-
 var util = require('./util');
 var Node = require('./node');
 var Ruler = require('./ruler');
 var Rulebook = require('./rulebook');
-
-var reduce = Array.prototype.reduce;
-var isBrowser = (() => !(typeof process === 'object'
-                         && typeof process.versions === 'object'
-                         && typeof process.versions.node !== 'undefined'))();
-
-var isHtml = function (str) {
-  // Faster than running regex, if str starts with `<` and ends with `>`, assume it's HTML
-  if (str.charAt(0) === '<' && str.charAt(str.length - 1) === '>' && str.length >= 3) return true;
-
-  // Run the regex
-  var quickExpr = /^(?:[^#<]*(<[\w\W]+>)[^>]*$|#([\w\-]*)$)/;
-  var match = quickExpr.exec(str);
-  return !!(match && match[1]);
-};
-
-var createDoc = function (html) {
-  html = minify(html, {
-    collapseWhitespace: true,
-  });
-
-  if (!isBrowser) {
-    const jsdom = require('jsdom');
-    const { JSDOM } = jsdom;
-    const dom = new JSDOM(html);
-    return dom.window.document.body;
-  } else{
-    var container = document.createElement('html');
-    container.innerHTML = html;
-    return container;
-  }
-};
 
 
 function HTML2Org (options) {
@@ -57,7 +23,7 @@ function HTML2Org (options) {
 
 HTML2Org.prototype = {
   fromString: function (string) {
-    var doc = createDoc(string);
+    var doc = util.createDoc(string);
     var content = parseNode.call(this, doc);
     return util.forceSpacing(content);
   },
@@ -82,11 +48,11 @@ HTML2Org.prototype = {
           return;
         }
         var string = data.toString();
-        if (!isHtml(string)) {
+        if (!util.isHtml(string)) {
           reject(basename + ' is not a html file.');
           return;
         }
-        resolve(createDoc(string));
+        resolve(util.createDoc(string));
       });
     }).then(function (dom) {
       var content = parseNode.call(this, dom);
