@@ -1,12 +1,5 @@
+var util = require('./util');
 
-function extend(Child, Parent) {
-  var F = function(){};
-  F.prototype = Parent.prototype;
-
-  Child.prototype = new F();
-  Child.prototype.constructor = Child;
-  Child.uber = Parent.prototype;
-}
 
 function Markup(syntax) {
   this.syntax = syntax;
@@ -125,7 +118,7 @@ Markup.prototype = {
 function Orgmode(syntax) {
   this.syntax = syntax;
 }
-extend(Orgmode, Markup);
+util.extend(Orgmode, Markup);
 
 Object.assign(Orgmode.prototype, {
 
