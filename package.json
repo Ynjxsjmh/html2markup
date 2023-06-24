@@ -1,0 +1,39 @@
+{
+  "name":"html2markup",
+  "description":"Convert HTML to various Markup language",
+  "version":"0.0.1",
+  "homepage":"https://github.com/Ynjxsjmh/html2markup",
+  "keywords":[
+    "html",
+    "convert",
+    "conversion"
+  ],
+  "author":{
+    "name":"Ynjxsjmh",
+    "url":"https://github.com/Ynjxsjmh"
+  },
+  "repository":{
+    "type":"git",
+    "url":"https://github.com/Ynjxsjmh/html2markup.git"
+  },
+  "license":"MIT",
+  "engines":{
+    "node":">= 0.10"
+  },
+  "main":"./src/html2markup.js",
+  "devDependencies":{
+    "coveralls":"*",
+    "istanbul":"*",
+    "mocha":"*",
+    "should":"*"
+  },
+  "scripts":{
+    "test":"node ./node_modules/.bin/_mocha --reporter spec",
+    "debug-test":"node ./node_modules/.bin/_mocha --reporter spec --inspect-brk",
+    "coveralls":"istanbul cover _mocha --report html -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+  },
+  "dependencies":{
+    "html-minifier":"^4.0.0",
+    "jsdom":"^17.0.0"
+  }
+}
