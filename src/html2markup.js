@@ -55,7 +55,7 @@ HTML2Markup.prototype = {
   fromString: function (string) {
     var doc = util.createDoc(string);
     var content = parseNode.call(this, doc);
-    return util.forceSpacing(content);
+    return util.postProcess(content);
   },
 
   fromPath: function (path) {
@@ -86,7 +86,7 @@ HTML2Markup.prototype = {
       });
     }).then(function (dom) {
       var content = parseNode.call(this, dom);
-      return util.forceSpacing(content);
+      return util.postProcess(content);
     });
   }
 };
