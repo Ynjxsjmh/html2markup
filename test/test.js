@@ -1,8 +1,8 @@
-var should = require("should");
+const should = require("should");
 
 
-var { HTML2Orgmode } = require("./../src/html2markup");
-var html2org = new HTML2Orgmode({});
+const { HTML2Orgmode } = require("./../src/html2markup");
+const html2org = new HTML2Orgmode({});
 
 var namespace = "HTML2Org/";
 

@@ -1,7 +1,7 @@
-var util = require('./util');
-var Node = require('./node');
-var Ruler = require('./ruler');
-var Rulebook = require('./rulebook');
+const util = require('./util');
+const Node = require('./node');
+const Ruler = require('./ruler');
+const Rulebook = require('./rulebook');
 
 
 function parse(node) {
@@ -59,8 +59,8 @@ HTML2Markup.prototype = {
   },
 
   fromPath: function (path) {
-    var fs = require('fs');
-    var basename = require('path').basename(path);
+    const fs = require('fs');
+    const basename = require('path').basename(path);
 
     if (!fs.existsSync(path)) {
       return Promise.reject('not exists file: ' + basename+'.');
@@ -93,9 +93,9 @@ HTML2Markup.prototype = {
 
 
 function HTML2Orgmode(options) {
-  var orgSyntax = require('./markup/org');
-  var { Orgmode } = require("./parser");
-  var markup = new Orgmode(orgSyntax);
+  const orgSyntax = require('./markup/org');
+  const { Orgmode } = require("./parser");
+  const markup = new Orgmode(orgSyntax);
   options.markup = markup;
 
   HTML2Markup.call(this, options);
